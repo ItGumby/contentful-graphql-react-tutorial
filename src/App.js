@@ -22,10 +22,11 @@ function App() {
   let [data, setData] = useState(null);
 
   useEffect(() => {
-    window.fetch(`https://graphql.contentful.com/content/v1/spaces/${REACT_APP_SPACE_ID}?access_token=${REACT_APP_ACCESS_TOKEN}`, {
+    window.fetch(`https://graphql.contentful.com/content/v1/spaces/${REACT_APP_SPACE_ID}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${REACT_APP_ACCESS_TOKEN}`
       },
       body: JSON.stringify({query}),
     }).then(response => response.json())
