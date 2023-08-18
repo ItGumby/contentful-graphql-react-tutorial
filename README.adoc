@@ -1,0 +1,51 @@
+== README
+
+distraction
+
+* https://app.contentful.com/spaces/lp4er3kki3mx/template-recommendation[sign up] from blog template
+* https://github.com/contentful/template-blog-webapp-nextjs[blog template]
+
+
+=== Tutorial series
+
+https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
+
+. exploring endpoints
+** query can have multiple queries, as long as unique lables/alias
+** _Contentful_ has collection filters out-of-box (probably their resolvers)
+. fetching w/ **React** usestate, useeffect, apollo
+** re-watch and build 1-off react app
+. refactor React app using env variables
+. refactor app with custom hook in react
+. refactor app for error handling (auth, validation)
+. refactor app with React Proptypes, tailwindCSS; add fields to content model
+. refactor app to include image
+. refactor app w/ rich-text
+** markdown URLs are hard-coded => hard to maintain/brittle
+** field has json, links
+** contentful provides rich-text-react-renderer, rich-text-types to simplify json=>HTML `documentToReactComponents(bio.json)`
+** but still a lot of work to convert every HTML element
+. contentful references (multi ref to string)
+. GraphQL fragments & query complexity
+** fragments '...${fragName}' (re-use)
+** collections filter/linkedfrom
+** query complexity <= use limit to reduce query cost; errors will share the cost/threshold if too high
+. preview / query variables
+** complexity of targeting preview docs (CPA token vs CDA token)
+** variables can be optional/mandatory/have defaults
+. server directives: conditional queries
+
+
+
+==== Meta Notes
+
+* react APIs: use relay or Apollo to manage/centralize many queries/calls
+* Contentful field refactoring (to delete) in content model: disable, save, delete, save
+* Contentful provides **transformation** options/filters in GraphQL queries for assets
+
+=== other
+
+. https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
+. https://app.contentful.com/spaces/lp4er3kki3mx/template-recommendation[sign up] from blog template
+.. https://github.com/contentful/template-blog-webapp-nextjs[blog template]
+.. p.a.t.  CFPAT-i9DCJxmoWEz0X3X2N2qPs5GlsrgSeKVNt1KoVgbkdEY
