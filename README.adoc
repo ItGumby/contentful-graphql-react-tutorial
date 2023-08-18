@@ -15,7 +15,14 @@ https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
 ** _Contentful_ has collection filters out-of-box (probably their resolvers)
 . fetching w/ **React** usestate, useeffect, apollo
 ** re-watch and build 1-off react app
+** (deferred) suggestion `npm audit fix --force`
+** (deferred) understand `npm start` vs `yarn start`
+** AJAX/`window.fetch()`: GET (read) vs POST (write but can also read)
+** https://react.dev/reference/react/useState[useState] - add a state variable `let [currentVal, setterFn] = useState(initVal)`
+** https://react.dev/reference/react/useEffect[useEffect] - synchronize w/ external system (call once per component mount instead of every mutation)
 . refactor React app using env variables
+** in $PROJ_ROOT/.env properties file, `REACT_APP_*` exposed to `process.env` to keep secrets out of source (assuming gitignore excludes .env files)
+** moving access_token from query-parameter to request header
 . refactor app with custom hook in react
 . refactor app for error handling (auth, validation)
 . refactor app with React Proptypes, tailwindCSS; add fields to content model
