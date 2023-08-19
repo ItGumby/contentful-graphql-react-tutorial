@@ -8,6 +8,7 @@ query {
   author: componentAuthor(id: "2NKz77emgdgCCePcbxHwzR") {
     name
     internalName
+    ##age
   }
 }
 `;
@@ -16,7 +17,10 @@ function App() {
   // temp counter distraction to highlight useState, useEffect
   let [count, setCount] = useState(0); // [curVal, setter] = useState(initVal)
 
-  const data = useContentful(query); // NOTE: error "Cannot destructure property" if 'let {data} ...'
+  let {data, errors} = useContentful(query); // NOTE: error "Cannot destructure property" if 'let {data} ...'
+  if (errors) {
+    return <ul style={{color: "red"}}><li>ERRORS:</li><li>{errors.map(err => err.message).join('</li><li>')}</li></ul>
+  }
   if (!data) return <div>Loading...</div>;
 
   return (

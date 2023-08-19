@@ -7,7 +7,8 @@ const {
 
 // as a Java developer, React Hooks are like services but MUST start with "use*"
 function useContentful(query) {
-  const [data, setData] = useState(null);
+  let [data, setData] = useState(null);
+  let [errors, setErrors] = useState(null);
 
   useEffect(() => {
     window.fetch(
@@ -21,12 +22,15 @@ function useContentful(query) {
             body: JSON.stringify({query}),
         })
         .then(response => { return response.json() })
-        .then(json => {
-            console.debug({"service": "hooks/contentful.js", "json": json});
-            setData(json.data)
+        .then(({data, errors}) => {
+            console.debug({"service": "hooks/contentful.js", "data": data, "errors": errors});
+            if (errors) setErrors(errors);
+            if (data) setData(data);
+            // throw new Error('oopsie');
         })
+        .catch(error => setErrors([error]));
   }, [query]); // run once on DOM injection, pass in dependencies requiring re-run
-  return data;
+  return {data, errors};
 }
 
 export default useContentful;
