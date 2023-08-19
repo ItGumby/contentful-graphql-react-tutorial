@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
+import useContentful from './hooks/contentful.js';
 import './App.css';
 
 const query = `
@@ -11,29 +12,12 @@ query {
 }
 `;
 
-const {
-  REACT_APP_SPACE_ID,
-  REACT_APP_ACCESS_TOKEN,
-} = process.env;
-
 function App() {
   // temp counter distraction to highlight useState, useEffect
   let [count, setCount] = useState(0); // [curVal, setter] = useState(initVal)
-  let [data, setData] = useState(null);
 
-  useEffect(() => {
-    window.fetch(`https://graphql.contentful.com/content/v1/spaces/${REACT_APP_SPACE_ID}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${REACT_APP_ACCESS_TOKEN}`
-      },
-      body: JSON.stringify({query}),
-    }).then(response => response.json())
-    .then(json => setData(json.data));
-  }, []); // run once on DOM injection
-
-  if (!data) return <span>Loading...</span>;
+  const data = useContentful(query); // NOTE: error "Cannot destructure property" if 'let {data} ...'
+  if (!data) return <div>Loading...</div>;
 
   return (
     <div className="App">

@@ -55,4 +55,3 @@ https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
 . https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
 . https://app.contentful.com/spaces/lp4er3kki3mx/template-recommendation[sign up] from blog template
 .. https://github.com/contentful/template-blog-webapp-nextjs[blog template]
-.. p.a.t.  CFPAT-i9DCJxmoWEz0X3X2N2qPs5GlsrgSeKVNt1KoVgbkdEY
