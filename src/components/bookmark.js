@@ -4,10 +4,9 @@ function Bookmark({bookmark}) {
     //console.dir(bookmark);
     return (
         <div className="bookmark">
-            <h4>{bookmark.title}</h4>
+            <h4><a href={bookmark.url}>{bookmark.title}</a></h4>
             <p>{bookmark.comment}</p>
             {/* his example uses documentToReactComponents for possible rich-text comment */}
-            <a href={bookmark.url}>Visit</a>
             <div>
             {bookmark.tagsCollection.items.map(tag =>
                 <Tag tag={tag} key={tag.title} />
