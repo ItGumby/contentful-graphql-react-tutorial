@@ -34,7 +34,7 @@ https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
 ** but still a lot of work to convert every HTML element
 . `npm install --save @contentful/rich-text-types @contentful/rich-text-react-renderer`
 . contentful references (multi ref to string)
-. GraphQL fragments & query complexity
+. GraphQL fragments & query complexity - start by using limits on collections
 ** fragments '...${fragName}' (re-use)
 ** collections filter/linkedfrom
 ** query complexity <= use limit to reduce query cost; errors will share the cost/threshold if too high

@@ -18,18 +18,32 @@ query {
       json
     }
   }
-  bookmarkCollection {
+  allBookmarks: bookmarkCollection {
     items {
-      sys { id }
+      ...bookmarkFields
+    }
+  }
+  favTagCollection: tagCollection(where: {title_contains: "favorite"}, limit: 1) {
+    items {
       title
-      url
-      comment
-      tagsCollection {
-        items {
-          title
+      linkedFrom {
+        bookmarkCollection(limit: 5) {
+          items {
+            ...bookmarkFields
+          }
         }
       }
     }
+  }
+}
+
+fragment bookmarkFields on Bookmark {
+  sys { id }
+  title
+  url
+  comment
+  tagsCollection {
+    items { title }
   }
 }
 `;
@@ -44,14 +58,18 @@ function App() {
   }
   if (!data) return <div>Loading...</div>;
 
+  const { allBookmarks, favTagCollection, author} = data;
+  const favoriteTag = favTagCollection.items[0];
+
   return (
     <div className="App">
       <header className="App-header">
         <p>counter: {count}</p>
         <button onClick={() => setCount(count + 1)}>increment</button>
 
-        <Person person={data.author} />
-        <Bookmarks heading="All bookmarks" list={data.bookmarkCollection.items} />
+        <Person person={author} />
+        <Bookmarks heading="Favorite" list={favoriteTag.linkedFrom.bookmarkCollection.items} />
+        <Bookmarks heading="All bookmarks" list={allBookmarks.items} />
       </header>
     </div>
   );
