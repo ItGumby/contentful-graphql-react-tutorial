@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import useContentful from './hooks/contentful.js';
 import Person from './components/person.js'
+import Bookmarks from './components/bookmark.js';
 import './App.css';
 
 const query = `
@@ -15,6 +16,19 @@ query {
     }
     bio {
       json
+    }
+  }
+  bookmarkCollection {
+    items {
+      sys { id }
+      title
+      url
+      comment
+      tagsCollection {
+        items {
+          title
+        }
+      }
     }
   }
 }
@@ -37,6 +51,7 @@ function App() {
         <button onClick={() => setCount(count + 1)}>increment</button>
 
         <Person person={data.author} />
+        <Bookmarks heading="All bookmarks" list={data.bookmarkCollection.items} />
       </header>
     </div>
   );
