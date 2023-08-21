@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
+import {BLOCKS, INLINES} from '@contentful/rich-text-types';
 
 function GithubLink({ url }) {
     return (
@@ -32,10 +34,24 @@ function LinkedinLink({ url }) {
     );
   }
 
+const RICHTEXT_OPTIONS = {
+  // only override what you want to modify
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children) => {
+      // for block-level paragraph tags, override how it renders, ie add a class or two
+      return <p className="my-para">{children}</p>
+    },
+    [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+      console.dir({'node': node, 'children': children});
+      // don't have appropriate link to internal assets for this single-page app
+      return <span className="my-internal-link" href={node.data.target.sys.id}>{children}</span>
+    }
+  }
+};
 
 function Person({person}) {
     const { name, socialGithub, socialLinkedIn, avatar, bio } = person;
-    console.log(bio);
+    // console.log(bio);
     return (
         <section>
             <h3>{name}</h3>
@@ -44,6 +60,7 @@ function Person({person}) {
               {socialGithub && <GithubLink url={socialGithub} />}
               {socialLinkedIn && <LinkedinLink url={socialLinkedIn} />}
             </div>
+            <div>{documentToReactComponents(bio.json, RICHTEXT_OPTIONS)}</div>
             {/* NOTE: learned placing quotes around the object curlies messes up JSX substitution */}
             <img className="w-75" src={avatar.url} alt={avatar.title} />
         </section>
