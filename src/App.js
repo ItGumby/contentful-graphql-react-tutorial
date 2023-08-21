@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import useContentful from './hooks/contentful.js';
 import Person from './components/person.js'
 import './App.css';
@@ -8,8 +7,8 @@ const query = `
 query {
   author: componentAuthor(id: "2NKz77emgdgCCePcbxHwzR") {
     name
-    internalName
-    ##age
+    socialLinkedIn
+    socialGithub
   }
 }
 `;
@@ -27,8 +26,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
         <p>counter: {count}</p>
         <button onClick={() => setCount(count + 1)}>increment</button>
 
