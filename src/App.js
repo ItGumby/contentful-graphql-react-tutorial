@@ -9,6 +9,10 @@ query {
     name
     socialLinkedIn
     socialGithub
+    avatar {
+      title
+      url
+    }
   }
 }
 `;
