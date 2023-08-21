@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import logo from './logo.svg';
 import useContentful from './hooks/contentful.js';
+import Person from './components/person.js'
 import './App.css';
 
 const query = `
@@ -31,7 +32,7 @@ function App() {
         <p>counter: {count}</p>
         <button onClick={() => setCount(count + 1)}>increment</button>
 
-        <h1>{data.author.name}</h1>
+        <Person person={data.author} />
       </header>
     </div>
   );
