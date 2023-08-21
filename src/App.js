@@ -13,6 +13,9 @@ query {
       title
       url
     }
+    bio {
+      json
+    }
   }
 }
 `;

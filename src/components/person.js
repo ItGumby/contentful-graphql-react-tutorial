@@ -34,7 +34,8 @@ function LinkedinLink({ url }) {
 
 
 function Person({person}) {
-    const { name, socialGithub, socialLinkedIn, avatar } = person;
+    const { name, socialGithub, socialLinkedIn, avatar, bio } = person;
+    console.log(bio);
     return (
         <section>
             <h3>{name}</h3>
@@ -55,6 +56,7 @@ Person.propTypes = {
     socialGithub: PropTypes.string.isRequired,
     socialLinkedIn: PropTypes.string.isRequired,
     avatar: PropTypes.object.isRequired,
+    bio: PropTypes.object.isRequired,
   }).isRequired,
 };
 

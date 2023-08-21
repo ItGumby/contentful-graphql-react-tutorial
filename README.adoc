@@ -32,6 +32,7 @@ https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
 ** field has json, links
 ** contentful provides rich-text-react-renderer, rich-text-types to simplify json=>HTML `documentToReactComponents(bio.json)`
 ** but still a lot of work to convert every HTML element
+. `npm install --save @contentful/rich-text-types @contentful/rich-text-react-renderer`
 . contentful references (multi ref to string)
 . GraphQL fragments & query complexity
 ** fragments '...${fragName}' (re-use)
