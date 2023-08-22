@@ -42,7 +42,7 @@ const RICHTEXT_OPTIONS = {
       return <p className="my-para">{children}</p>
     },
     [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-      //console.dir({'node': node, 'children': children});
+      console.warn("rich-text with link to entry: unknown link URL. rendering as span with attributes");
       // don't have appropriate link to internal assets for this single-page app
       return <span className="my-internal-link" href={node.data.target.sys.id}>{children}</span>
     }

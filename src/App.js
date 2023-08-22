@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import useContentful from './hooks/contentful.js';
 import Person from './components/person.js'
 import Bookmarks from './components/bookmark.js';
+import Counter from './components/counter.js';
 import './App.css';
 
 const query = `
@@ -83,8 +84,8 @@ function App() {
           <input type="checkbox" checked={isPreview} onChange={() => setIsPreview(!isPreview)}></input>
           Show Preview
         </label>
-        <p>counter: {count}</p>
-        <button onClick={() => setCount(count + 1)}>increment</button>
+        <Counter />
+
 
         {authorPreview ? <Person person={authorPreview} /> : ""}
         <Person person={author} />
