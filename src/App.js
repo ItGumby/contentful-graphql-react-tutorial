@@ -5,8 +5,8 @@ import Bookmarks from './components/bookmark.js';
 import './App.css';
 
 const query = `
-query {
-  author: componentAuthor(id: "2NKz77emgdgCCePcbxHwzR") {
+query($isPreview: Boolean=false) {
+  author: componentAuthor(id: "2NKz77emgdgCCePcbxHwzR", preview: $isPreview) {
     name
     socialLinkedIn
     socialGithub
@@ -48,11 +48,13 @@ fragment bookmarkFields on Bookmark {
 }
 `;
 
+const IS_PREVIEW = true;
+
 function App() {
   // temp counter distraction to highlight useState, useEffect
   let [count, setCount] = useState(0); // [curVal, setter] = useState(initVal)
 
-  let {data, errors} = useContentful(query); // NOTE: error "Cannot destructure property" if 'let {data} ...'
+  let {data, errors} = useContentful(query, IS_PREVIEW); // NOTE: error "Cannot destructure property" if 'let {data} ...'
   if (errors) {
     return <ul style={{color: "red"}}><li>ERRORS:</li><li>{errors.map(err => err.message).join('</li><li>')}</li></ul>
   }

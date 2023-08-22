@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 const {
     REACT_APP_SPACE_ID,
     REACT_APP_ACCESS_TOKEN,
+    REACT_APP_PREVIEW_TOKEN,
   } = process.env;
 
 // as a Java developer, React Hooks are like services but MUST start with "use*"
-function useContentful(query) {
+function useContentful(query, isPreview) {
   let [data, setData] = useState(null);
   let [errors, setErrors] = useState(null);
 
@@ -16,10 +17,10 @@ function useContentful(query) {
         {
             method: 'POST',
             headers: {
-                Authorization: `Bearer ${REACT_APP_ACCESS_TOKEN}`,
+                Authorization: `Bearer ${isPreview ? REACT_APP_PREVIEW_TOKEN : REACT_APP_ACCESS_TOKEN}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({query}),
+            body: JSON.stringify({query, variables: {isPreview}}),
         })
         .then(response => { return response.json() })
         .then(({data, errors}) => {
@@ -29,7 +30,7 @@ function useContentful(query) {
             // throw new Error('oopsie');
         })
         .catch(error => setErrors([error]));
-  }, [query]); // run once on DOM injection, pass in dependencies requiring re-run
+  }, [query,isPreview]); // run once on DOM injection, pass in dependencies requiring re-run
   return {data, errors};
 }
 
