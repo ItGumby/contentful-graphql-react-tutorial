@@ -8,7 +8,7 @@ distraction
 
 === Tutorial series
 
-https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
+Contentful's https://www.contentful.com/developers/videos/learn-graphql/[Getting started with GraphQL]
 
 . exploring endpoints
 ** query can have multiple queries, as long as unique lables/alias
@@ -42,7 +42,10 @@ https://www.contentful.com/developers/videos/learn-graphql/[Learn GraphQL]
 ** complexity of targeting preview docs (CPA token vs CDA token)
 ** variables can be optional/mandatory/have defaults
 . server directives: conditional queries
-
+. additional references
+** https://www.contentful.com/developers/docs/references/graphql/ Contentful's GraphQL API & extensions
+** https://graphql.org/learn/ general GraphQL
+** +++<del>+++https://legacy.reactjs.org/docs/getting-started.html+++</del>+++ https://react.dev/learn to learn more ReactJS
 
 
 ==== Meta Notes
