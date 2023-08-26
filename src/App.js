@@ -4,7 +4,7 @@ import Person from './components/person.js'
 import Bookmarks from './components/bookmark.js';
 import Counter from './components/counter.js';
 import Page from './components/page.js';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Outlet} from "react-router-dom";
 import './App.css';
 
 const query = `
@@ -86,7 +86,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Page heading="MySite" color="gold" />} />
             <Route path="/about" element={<Page heading="About Us" color="green" />} />
-            <Route path="/contact" element={<Page heading="Contact Us" color="red" />} >
+            <Route path="/contact" element={<>
+                <Page heading="Contact Us" color="red" />
+                <Outlet />
+              </>}
+            >
               <Route path="privacy" element={<Page heading="Privacy Policy" color="pink" />} />
             </Route>
             <Route path="privacy" element={<Page heading="Privacy Policy" color="pink" />} />
