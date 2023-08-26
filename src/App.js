@@ -3,6 +3,7 @@ import useContentful from './hooks/contentful.js';
 import Person from './components/person.js'
 import Bookmarks from './components/bookmark.js';
 import Counter from './components/counter.js';
+import Page from './components/page.js';
 import './App.css';
 
 const query = `
@@ -80,6 +81,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Page heading="page component" color="green" />
         <label>
           <input type="checkbox" checked={isPreview} onChange={() => setIsPreview(!isPreview)}></input>
           Show Preview
