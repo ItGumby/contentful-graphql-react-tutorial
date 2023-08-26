@@ -4,8 +4,9 @@ import Person from './components/person.js'
 import Bookmarks from './components/bookmark.js';
 import Counter from './components/counter.js';
 import Page from './components/page.js';
-import {BrowserRouter, Routes, Route, Outlet} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Outlet, Link} from "react-router-dom";
 import './App.css';
+import { getByPlaceholderText } from '@testing-library/react';
 
 const query = `
 query($isPreview: Boolean=false){
@@ -82,7 +83,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <BrowserRouter>
+      <BrowserRouter  basename="/">
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact Us</Link>
+          <Link to="/contact/privacy">Privacy Policy</Link>
+          <Link to="/blog">Our Blog</Link>
+          <Link to="/graphql">GraphQL example</Link>
+        </nav>
           <Routes>
             <Route path="/" element={<Page heading="MySite" color="gold" />} />
             <Route path="/about" element={<Page heading="About Us" color="green" />} />
@@ -93,8 +102,6 @@ function App() {
             >
               <Route path="privacy" element={<Page heading="Privacy Policy" color="pink" />} />
             </Route>
-            <Route path="privacy" element={<Page heading="Privacy Policy" color="pink" />} />
-
             <Route path="/blog" element={<Page heading="Our Articles" color="rebeccapurple" />} />
             <Route path="/graphql" element={
               <>
@@ -110,8 +117,8 @@ function App() {
               </>
             } />
           </Routes>
-        </BrowserRouter>
         <Counter />
+      </BrowserRouter>
       </header>
     </div>
   );
