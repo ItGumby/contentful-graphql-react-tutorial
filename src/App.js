@@ -4,6 +4,7 @@ import Person from './components/person.js'
 import Bookmarks from './components/bookmark.js';
 import Counter from './components/counter.js';
 import Page from './components/page.js';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import './App.css';
 
 const query = `
@@ -81,18 +82,32 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Page heading="page component" color="green" />
-        <label>
-          <input type="checkbox" checked={isPreview} onChange={() => setIsPreview(!isPreview)}></input>
-          Show Preview
-        </label>
+      <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Page heading="MySite" color="gold" />} />
+            <Route path="/about" element={<Page heading="About Us" color="green" />} />
+            <Route path="/contact" element={<Page heading="Contact Us" color="red" />} >
+              <Route path="privacy" element={<Page heading="Privacy Policy" color="pink" />} />
+            </Route>
+            <Route path="privacy" element={<Page heading="Privacy Policy" color="pink" />} />
+
+            <Route path="/blog" element={<Page heading="Our Articles" color="rebeccapurple" />} />
+            <Route path="/graphql" element={
+              <>
+                <Page heading="GraphQL" color="rebeccapurple" />
+                <label>
+                  <input type="checkbox" checked={isPreview} onChange={() => setIsPreview(!isPreview)}></input>
+                    Show Preview
+                </label>
+                {authorPreview ? <Person person={authorPreview} /> : ""}
+                <Person person={author} />
+                <Bookmarks heading="Favorite" list={favoriteTag.linkedFrom.bookmarkCollection.items} />
+                <Bookmarks heading="All bookmarks" list={allBookmarks.items} />
+              </>
+            } />
+          </Routes>
+        </BrowserRouter>
         <Counter />
-
-
-        {authorPreview ? <Person person={authorPreview} /> : ""}
-        <Person person={author} />
-        <Bookmarks heading="Favorite" list={favoriteTag.linkedFrom.bookmarkCollection.items} />
-        <Bookmarks heading="All bookmarks" list={allBookmarks.items} />
       </header>
     </div>
   );
